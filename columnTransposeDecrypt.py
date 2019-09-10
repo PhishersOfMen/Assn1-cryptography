@@ -1,3 +1,5 @@
+import math
+
 def columnTransposeDecrypt(text,key):
     decryptedMessage = ""
     #key values 
@@ -19,7 +21,7 @@ def columnTransposeDecrypt(text,key):
         i = key.index(keyList[keyIndex]) 
   
         for j in range(row): 
-            decrypt[j][i] = textIndex[textIndex] 
+            decrypt[j][i] = textList[textIndex] 
             textIndex += 1
         keyIndex += 1
     #decrypt my message.    
