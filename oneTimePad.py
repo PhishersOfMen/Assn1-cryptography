@@ -35,7 +35,7 @@ def oneTimePad(value, key):
     # Convert the given decimal values to binary
     binArray = []
     for el in value:
-        temp = bin(el)
+        temp = bin(int(el))
         temp = temp[2:]
         binArray.append(temp)
 
@@ -44,6 +44,6 @@ def oneTimePad(value, key):
     for el in binArray:
         rvalue = xor(el, key)
         # converts the applied binary values back to decimal
-        results.append(int(rvalue,2))
+        results.append(str(int(rvalue,2)))
 
-    return results
+    return "".join(results)

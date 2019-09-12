@@ -9,7 +9,7 @@ from polybius import polybiusToStr, polybiusToNum
 while True:
     # User Input
     encrypt, plaintext, key = config()
-    otpKey = key[-2:]
+    otpKey = int(key[-2:])
     key = key[:-2]
 
     # Encryption Path
@@ -18,13 +18,12 @@ while True:
         ciphertext = columnTransposeEncrypt(plaintext, polyKey)
         polyNums = polybiusToNum(ciphertext)
         results = oneTimePad(polyNums, otpKey)
-        # TODO: merge results
         print(results)
     
     # Decryption Path
     else:
         results = oneTimePad(plaintext, otpKey)
-        # TODO: merge results
-        polyKey = polybiusToStr(results)
-        message = columnTransposeDecrypt(polyKey, key) # TODO Check
+        ciphertext = polybiusToStr(results)
+        polyKey = polybiusToStr(key)
+        message = columnTransposeDecrypt(ciphertext, polyKey)
         print(message)

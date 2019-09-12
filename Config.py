@@ -14,7 +14,7 @@ def config():
     print(" ~ Encrypt a message (e)")
     print(" ~ Decrypt a message (d)")
     print(" ~ Exit (x)")
-    user = input().lower()
+    user = input(": ").lower()
 
     if user.startswith('x'):
         print("Have a nice day!!")
