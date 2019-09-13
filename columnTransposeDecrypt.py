@@ -1,29 +1,47 @@
-import math
+ #goes throughout key and assigns a number for each letter.
+def keyPosition(key):
+    position = [] 
+    for index, i in enumerate(key):
+        previousLetters = key[:index]
+        temp = 1
+        for indexMinusOne, h in enumerate(previousLetters):
+            if h > i:
+                position[indexMinusOne] += 1
+            else:
+                temp += 1
+        position.append(temp)
+    return position
 
-def columnTransposeDecrypt(text,key):
-    decryptedMessage = ""
-    #key values 
-    keyIndex = 0
-    keyList = sorted(list(key)) 
-    #text values
-    textIndex = 0
-    textLength = float(len(text)) 
-    textList = list(text)
-    #get my col and row
-    col = len(key) 
-    row = int(math.ceil(textLength / col))  
-    #get an empty matrix
-    decrypt = [] 
-    for _ in range(row): 
-        decrypt += [[None] * col] 
-    #fill empty matrix 
-    for _ in range(col): 
-        i = key.index(keyList[keyIndex]) 
-  
-        for j in range(row): 
-            decrypt[j][i] = textList[textIndex] 
-            textIndex += 1
-        keyIndex += 1
-    #decrypt my message.    
-    decryptedMessage = ''.join(sum(decrypt, []))
-    return decryptedMessage 
+#goes throug empty matrix and fils with letters that have been sorted with the key position function.
+def createDycrypter(keyPos, text):
+    row = len(keyPos)
+    col = int(len(text) / row)
+    if col * row < len(text):
+        col += 1
+    emptyMat = []
+    totalAdded = 0
+    for f in range(col):
+        emptyMat.append([])
+        for k in range(row):
+            if totalAdded < len(text):
+               emptyMat[f].append('')
+               totalAdded += 1          
+    decrypter = emptyMat
+    index = 0
+    for num in range(len(keyPos)):
+        i = keyPos.index(num+1)
+        j = 0
+        while (j < len(decrypter)) and (len(decrypter[j]) > i):
+            decrypter[j][i] = text[index]
+            j += 1
+            index += 1
+    return decrypter
+
+ #my decrypted method   
+def columnTransposeDecrypt(text, key):
+    message = ""
+    decrypter = createDycrypter(keyPosition(key), text)
+    for j in range(len(decrypter)):
+        for k in range(len(decrypter[j])):
+            message += decrypter[j][k]
+    return message
