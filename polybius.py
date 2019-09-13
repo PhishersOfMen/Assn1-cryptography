@@ -20,7 +20,7 @@ def polybiusToNum(letterStr):
     return "".join(nums)
 
 def polybiusToStr(numStr):
-    print(numStr)
+    # print(numStr)
     chars = []
     for i in range(0, len(numStr), 2):
         row = int(numStr[i]) - 1

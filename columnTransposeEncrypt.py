@@ -16,7 +16,7 @@ def columnTransposeEncrypt(text, key):
     valueList = sorted(valueList, key=lambda k: k["key"])
     ciphertext = ""
     for i in valueList:
-        print(i)
+        # print(i)
         ciphertext += str("".join(i["vals"]))
 
     return ciphertext
