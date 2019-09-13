@@ -15,20 +15,20 @@ while True:
     # Encryption Path
     if encrypt:
         polyKey = polybiusToStr(key)
-        print(polyKey)
+        # print(polyKey)
         ciphertext = columnTransposeEncrypt(plaintext, polyKey)
-        print(ciphertext)
+        # print(ciphertext)
         polyNums = polybiusToNum(ciphertext)
-        print(polyNums)
+        # print(polyNums)
         if len(polyNums) % 2 == 0:
             polyNums = [ polyNums[i:i+2] for i in range(0, len(polyNums), 2)]
         else:
             temp = polyNums[:-1]
             polyNums = [ polyNums[i:i+2] for i in range(0, len(polyNums)-1, 2)]
             polyNums.append(f'0{temp}')
-        print(polyNums)
+        # print(polyNums)
         results = oneTimePad(polyNums, otpKey)
-        print(results)
+        print(f'\nEncrypted Message: {results}')
     
     # Decryption Path
     else:
@@ -39,10 +39,10 @@ while True:
             plaintext = [ plaintext[i:i+2] for i in range(0, len(plaintext)-1, 2)]
             plaintext.append(f'0{temp}')
         results = oneTimePad(plaintext, otpKey)
-        print(results)
+        # print(results)
         ciphertext = polybiusToStr(results)
-        print(ciphertext)
+        # print(ciphertext)
         polyKey = polybiusToStr(key)
-        print(polyKey)
+        # print(polyKey)
         message = columnTransposeDecrypt(ciphertext, polyKey)
-        print(message)
+        print(f'\nDecrypted message: {message}')

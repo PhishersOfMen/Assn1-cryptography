@@ -8,7 +8,7 @@ def usrInput(msg):
 
 def config():
     print("\n************************************")
-    print("*** Phishers of Men Cryptosystem ****")
+    print("*** Phishers of Men Cryptosystem ***")
     print("************************************\n")
         
     while True:    
