@@ -3,8 +3,8 @@ import sys
 def usrInput(msg):
     message = input(f"Enter a message to {msg}: ").lower()
     key = input("Enter the key value to use: ")
-
-    return message, key
+    showSteps = True if input("Show output of each step? (y or n): ") == "y" else False
+    return message, key, showSteps
 
 def config():
     print("\n************************************")
@@ -23,12 +23,12 @@ def config():
             sys.exit()
 
         if user.startswith('e'):
-            msg, key = usrInput("encrypt")
-            return True, msg, key
+            msg, key, steps = usrInput("encrypt")
+            return True, msg, key, steps
 
         if user.startswith('d'):
-            msg, key = usrInput("decrypt")
-            return False, msg, key
+            msg, key, steps = usrInput("decrypt")
+            return False, msg, key, steps
         
         else:
             print("\nUnknown command")
