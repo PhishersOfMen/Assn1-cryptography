@@ -44,6 +44,10 @@ def oneTimePad(value, key):
     for el in binArray:
         rvalue = xor(el, key)
         # converts the applied binary values back to decimal
-        results.append(str(int(rvalue,2)))
+        temp = str(int(rvalue,2))
+        if len(temp) == 1:
+            temp = f"0{temp}"
+        results.append(temp)
+        
 
     return "".join(results)
